@@ -20,3 +20,10 @@ Route::get('/', function () {
 Route::get('hello', function(){
    return 'hello world';
 });
+
+Route::get("home","QrController@index");
+
+Route::get('qr_code',function ()
+{
+    return view('qr_code');
+});
