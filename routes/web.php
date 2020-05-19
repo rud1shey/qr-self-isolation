@@ -13,17 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('hello', function(){
-   return 'hello world';
-});
 
-Route::get("home","QrController@index");
-
-Route::get('qr_code',function ()
+Route::get('qrcode',function ()
 {
-    return view('qr_code');
+    $user=[
+        "uid"=>"askjdfhalskjdfh",
+    ];
+    $json = json_encode($user);
+    return view('qr_code',compact('json'));
 });
+
+Route::get('login', 'AuthController@index');
+Route::post('post-login', 'AuthController@postLogin');
+Route::get('registration', 'AuthController@registration');
+Route::post('post-registration', 'AuthController@postRegistration');
+Route::get('post-qr','AuthController@postQrCode');
+Route::get('dashboard', 'AuthController@dashboard');
+Route::get('/', 'AuthController@dashboard');
+Route::get('logout', 'AuthController@logout');
